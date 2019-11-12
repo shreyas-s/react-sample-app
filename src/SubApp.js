@@ -2,11 +2,19 @@ import React, { Component } from 'react';
  import './SubApp.css';
 
 class SubApp extends Component{
- 
+ constructor(){
+     super();
+     this.state = {subbrand: ''}
+ }
+
  handleChng = () => {
      let brandVal = 'suzuki'
-     //this.setState({brand: brandVal})
      this.props.update(brandVal)
+ }
+
+ handlInpChange = (e) => {
+     this.setState({subbrand: e.target.value})
+    this.props.update(this.state.subbrand);
  }
 
     render(){
@@ -14,6 +22,7 @@ class SubApp extends Component{
             Hello Sub Component...
             {this.props.cust}
             <button onClick={this.handleChng}>Child State Change</button>
+            <input value={this.state.subbrand} onChange={this.handlInpChange} />
         </div>)
     }
 }
